@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🐷 Cute Pig Farm</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(#87CEEB, #98FB98);
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }h1 {
+  position: absolute;
+  width: 100%;
+  top: 10px;
+  color: #fff;
+  text-shadow: 2px 2px 4px #000;
+}
+
+.farm {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.pig {
+  position: absolute;
+  font-size: 50px;
+  transition: transform 0.2s;
+}
+
+.tree {
+  position: absolute;
+  font-size: 60px;
+}
+
+.flower {
+  position: absolute;
+  font-size: 30px;
+}
+
+  </style>
+</head>
+<body>
+  <h1>🐷 Welcome to Piggy Farm 🌸</h1>
+  <div class="farm" id="farm">
+    <div class="pig" id="pig">🐷</div><!-- Decorations -->
+<div class="tree" style="top:20%; left:10%;">🌳</div>
+<div class="tree" style="top:60%; left:80%;">🌳</div>
+<div class="flower" style="top:70%; left:20%;">🌼</div>
+<div class="flower" style="top:40%; left:60%;">🌸</div>
+<div class="flower" style="top:80%; left:50%;">🌻</div>
+
+  </div>  <script>
+    const pig = document.getElementById("pig");
+    const farm = document.getElementById("farm");
+
+    function movePig() {
+      const maxX = window.innerWidth - 50;
+      const maxY = window.innerHeight - 50;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      pig.style.left = x + "px";
+      pig.style.top = y + "px";
+
+      // flip pig direction
+      pig.style.transform = Math.random() > 0.5 ? "scaleX(1)" : "scaleX(-1)";
+    }
+
+    setInterval(movePig, 800);
+  </script></body>
+</html>
