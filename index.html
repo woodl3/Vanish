@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>🐷 Cute Pig Farm</title>
+  <title>🐷 Piggy Paradise Farm</title>
   <style>
     body {
       margin: 0;
@@ -15,6 +15,7 @@
   top: 10px;
   color: #fff;
   text-shadow: 2px 2px 4px #000;
+  z-index: 10;
 }
 
 .farm {
@@ -25,39 +26,47 @@
 
 .pig {
   position: absolute;
-  font-size: 50px;
+  font-size: 40px;
+  pointer-events: none;
   transition: transform 0.2s;
 }
 
-.tree {
-  position: absolute;
-  font-size: 60px;
-}
-
-.flower {
-  position: absolute;
-  font-size: 30px;
-}
+.tree { position: absolute; font-size: 60px; }
+.flower { position: absolute; font-size: 30px; }
 
   </style>
 </head>
 <body>
-  <h1>🐷 Welcome to Piggy Farm 🌸</h1>
+  <h1>🐷 Piggy Paradise 🌸</h1>
   <div class="farm" id="farm">
-    <div class="pig" id="pig">🐷</div><!-- Decorations -->
-<div class="tree" style="top:20%; left:10%;">🌳</div>
-<div class="tree" style="top:60%; left:80%;">🌳</div>
-<div class="flower" style="top:70%; left:20%;">🌼</div>
-<div class="flower" style="top:40%; left:60%;">🌸</div>
-<div class="flower" style="top:80%; left:50%;">🌻</div>
-
+    <!-- Decorations -->
+    <div class="tree" style="top:20%; left:10%;">🌳</div>
+    <div class="tree" style="top:60%; left:80%;">🌳</div>
+    <div class="flower" style="top:70%; left:20%;">🌼</div>
+    <div class="flower" style="top:40%; left:60%;">🌸</div>
+    <div class="flower" style="top:80%; left:50%;">🌻</div>
   </div>  <script>
-    const pig = document.getElementById("pig");
     const farm = document.getElementById("farm");
+    const pigs = [];
+    const PIG_COUNT = 20; // lots of pigs 🐷🐷🐷
 
-    function movePig() {
-      const maxX = window.innerWidth - 50;
-      const maxY = window.innerHeight - 50;
+    // create pigs
+    for (let i = 0; i < PIG_COUNT; i++) {
+      const pig = document.createElement("div");
+      pig.className = "pig";
+      pig.textContent = "🐷";
+
+      // random starting position
+      pig.style.left = Math.random() * window.innerWidth + "px";
+      pig.style.top = Math.random() * window.innerHeight + "px";
+
+      farm.appendChild(pig);
+      pigs.push(pig);
+    }
+
+    function movePig(pig) {
+      const maxX = window.innerWidth - 40;
+      const maxY = window.innerHeight - 40;
 
       const x = Math.random() * maxX;
       const y = Math.random() * maxY;
@@ -65,10 +74,14 @@
       pig.style.left = x + "px";
       pig.style.top = y + "px";
 
-      // flip pig direction
+      // flip direction
       pig.style.transform = Math.random() > 0.5 ? "scaleX(1)" : "scaleX(-1)";
     }
 
-    setInterval(movePig, 800);
+    function animatePigs() {
+      pigs.forEach(pig => movePig(pig));
+    }
+
+    setInterval(animatePigs, 600);
   </script></body>
 </html>
